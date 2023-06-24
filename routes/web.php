@@ -13,13 +13,61 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function ()
+{
+    Route::get('/', function () {
+        return view ('auth.login');
+    });
+
+
+    Auth::routes(['register' => false]);
+
+    Route::resource('invoices','InvoicesController');
+    Route::resource('sections','SectionsController');
+    Route::resource('products','ProductsController');
+
+    Route::get('/section/{id}', 'InvoicesController@getproducts');
+    Route::resource('InvoiceAttachments', 'InvoicesAttachmentsController');
+    Route::get('/edit_invoice/{id}', 'InvoicesController@edit');
+    Route::get('/Status_show/{id}', 'InvoicesController@show')->name('Status_show');
+    Route::post('/Status_Update/{id}', 'InvoicesController@Status_Update')->name('Status_Update');
+
+
+    Route::get('Invoice_Paid','InvoicesController@Invoice_Paid');
+
+    Route::get('Invoice_UnPaid','InvoicesController@Invoice_UnPaid');
+
+    Route::get('Invoice_Partial','InvoicesController@Invoice_Partial');
+
+    Route::resource('Archive', 'InvoiceAchiveController');
+    Route::get('Print_invoice/{id}','InvoicesController@Print_invoice');
+
+
+    Route::get('/InvoicesDetails/{id}', 'InvoicesDetailsController@edit');
+    Route::get('View_file/{invoice_number}/{file_name}', 'InvoicesDetailsController@open_file');
+    Route::get('download/{invoice_number}/{file_name}', 'InvoicesDetailsController@get_file');
+    Route::post('delete_file', 'InvoicesDetailsController@destroy')->name('delete_file');
+
+
+
+
+    Route::group(['middleware' => ['auth']], function() {
+
+        Route::resource('roles','RoleController');
+
+        Route::resource('users','UserController');
+
+    });
+
+
+    Route::get('invoices_report', 'Invoices_Report@index');
+    Route::post('Search_invoices', 'Invoices_Report@Search_invoices');
+    Route::get('customers_report', 'Customers_Report@index')->name("customers_report");
+    Route::post('Search_customers', 'Customers_Report@Search_customers');
+
+    Route::get('MarkAsRead_all','InvoicesController@MarkAsRead_all')->name('MarkAsRead_all');
+
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/{page}', 'AdminController@index');
+
 });
-
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/{page}', 'AdminController@index');
-Route::resource('news','InvoicesController');

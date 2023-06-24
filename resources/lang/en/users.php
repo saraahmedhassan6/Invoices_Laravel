@@ -1,0 +1,45 @@
+<?php
+
+return [
+    'users'=>'Users',
+    'users_list'=>'Users List',
+    'user_permissions'=>'User Permissions',
+    'user_permission'=>'User Permission',
+    'add_user'=>'Add User',
+    'username'=>'Username',
+    'email'=>'Email',
+    'password'=>'Password',
+    'confirm_password'=>'Confirm Password',
+    'user_statue'=>'User Statue',
+    'user_type'=>'User Type',
+    'transactions'=>'Transactions',
+    'edit'=>'Edit',
+    'edit_user'=>'Edite User',
+    'back'=>'Back',
+    'save'=>'Save',
+    'confirm'=>'Confirm',
+    'delete'=>'Delete',
+    'cancel'=>'Cancel',
+    'delete_msg'=>'Are you sure you want to delete the user ?',
+    'delete_user'=>'Delete User',
+    'error'=>'Error',
+    'add'=>'Add',
+    'show'=>'Show',
+    'show_permissions'=>'Show Permissions',
+    'add_permissions'=>'Add Permissions',
+    'permissions'=>'Permissions',
+    'permission_name'=>'Permission Name',
+    'edit_permissions'=>'Edit Permissions',
+    'name'=>'Name',
+    'delete_perm_succ_msg'=>'Permissions has been deleted successfully',
+    'edit_perm_succ_msg'=>'Permissions has been edited successfully',
+    'add_perm_succ_msg'=>'Permissions has been aded successfully',
+    'add_user_succ_msg'=>'User has been aded successfully',
+    'edit_user_succ_msg'=>'User has been edited successfully',
+    'delete_user_succ_msg'=>'User has been deleted successfully',
+    ''=>'',
+
+
+
+
+];
